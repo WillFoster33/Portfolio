@@ -1,13 +1,337 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes underlineAnimation {
+  0% { left: -10%; width: 10%; }
+  25% { left: -10%; width: 120%; }
+  50% { left: 100%; width: 10%; }
+  75% { left: -10%; width: 120%; }
+  100% { left: -10%; width: 10%; }
+}
+@keyframes borderTop {
+  0%, 100% { transform: scaleX(0); }
+  50% { transform: scaleX(1); }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@keyframes borderRight {
+  0%, 100% { transform: scaleY(0); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes borderBottom {
+  0%, 100% { transform: scaleX(0); }
+  50% { transform: scaleX(1); }
+}
+
+@keyframes borderLeft {
+  0%, 100% { transform: scaleY(0); }
+  50% { transform: scaleY(1); }
+}
+
+.animate-border-top {
+  animation: borderTop 4s infinite;
+  transform-origin: left;
+}
+
+.animate-border-right {
+  animation: borderRight 4s infinite 1s;
+  transform-origin: top;
+}
+
+.animate-border-bottom {
+  animation: borderBottom 4s infinite 2s;
+  transform-origin: right;
+}
+
+.animate-border-left {
+  animation: borderLeft 4s infinite 3s;
+  transform-origin: bottom;
+}
+
+/* ... (other styles remain the same) */
+
+.project-flip-container {
+  perspective: 1000px;
+  width: 100%;
+  padding-bottom: 84.28%; /* 590/700 aspect ratio */
+  position: relative;
+  max-width: 700px; /* Set max-width to desired image width */
+  margin: 0 auto;
+}
+
+.project-front img {
+  width: 700px;
+  height: 590px;
+  object-fit: cover;
+  object-position: center;
+}
+.animate-underline {
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 10%;
+  height: 100%;
+  background: linear-gradient(to right, #63bdf6, #04b32a);
+  animation: underlineAnimation 4s linear infinite;
+}
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(8vh);
+  visibility: hidden;
+  transition: opacity 0.6s ease-out, transform 1.2s ease-out;
+  will-change: opacity, visibility;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.hover\:rotate-y-180:hover {
+  transform: rotateY(180deg);
+}
+
+/* ... (existing styles remain the same) */
+/* Flip card container */
+.flip-card-container {
+  perspective: 1000px;
+  height: 300px; /* Adjust as needed */
+}
+
+/* Flip card */
+.flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* Flipped state */
+.flip-card.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Flip card inner */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* Front and back of the card */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Back of the card */
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Ensure the logo image fills the container */
+.flip-card-front img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+
+/* Timeline styles */
+.timeline {
+  position: relative;
+  padding: 10px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 30px;
+  width: 4px;
+  background: linear-gradient(to bottom, #63bdf6, #b27de3);
+  border-radius: 2px;
+}
+
+.timeline-event {
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 60px;
+}
+
+.timeline-event::before {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 4px solid #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.timeline-event.active::before {
+  background: #3b82f6;
+  box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.3);
+}
+
+.timeline-content {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.timeline-event:hover .timeline-content,
+.timeline-event.active .timeline-content {
+  transform: translateX(5px) translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-year {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #3b82f6;
+  margin-bottom: 5px;
+}
+
+.timeline-title {
+  font-size: 1rem;
+  color: #4b5563;
+}
+
+.snippet-container {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+  }
+  
+  .timeline-event {
+    padding-left: 50px;
+  }
+  
+  .timeline-event::before {
+    left: 12px;
+  }
+}
+/* Project logo styles */
+.project-logo-container {
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flipper.flipped {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.front {
+  background-color: transparent;
+}
+
+.back {
+  background-color: #f0f0f0; /* Light grey background for contrast */
+  transform: rotateY(180deg);
+  padding: 20px;
+  text-align: center;
+}
+
+.project-logo-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* More button styles */
+.back a {
+  position: relative;
+  display: inline-block;
+}
+
+.back a span {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.back a:hover span {
+  width: 100%;
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+  .project-logo-container {
+    width: 200px;
+    height: 200px;
+  }
 }
