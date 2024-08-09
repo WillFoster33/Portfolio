@@ -40,27 +40,11 @@ const QA = () => {
     setQuestion('');
     setIsThinking(true);
 
-    try {
-      const response = await fetch('http://localhost:5000/api/query', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ query: question }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-      setConversation(prev => [...prev, { type: 'answer', content: data.answer }]);
-    } catch (error) {
-      console.error('Error:', error);
-      setConversation(prev => [...prev, { type: 'answer', content: 'Sorry, there was an error processing your request.' }]);
-    } finally {
+    // Simulate thinking time
+    setTimeout(() => {
       setIsThinking(false);
-    }
+      setConversation(prev => [...prev, { type: 'answer', content: 'This is a placeholder response. In a real application, this would be replaced with an actual answer from an API or other data source.' }]);
+    }, 2000); // Simulate 2 seconds of "thinking"
   };
 
   useEffect(() => {
@@ -76,6 +60,7 @@ const QA = () => {
             <ChatBubble key={index} type={item.type} content={item.content} />
           ))}
           {isThinking && <ThinkingAnimation />}
+          <div ref={bottomRef} />
         </div>
       </main>
       <form onSubmit={handleSubmit} className="fixed bottom-0 left-0 right-0 bg-white bg-opacity-60 backdrop-blur-sm p-4">
