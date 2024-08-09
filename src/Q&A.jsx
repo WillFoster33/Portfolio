@@ -41,11 +41,27 @@ const QA = () => {
     setQuestion('');
     setIsThinking(true);
 
-    // Simulate thinking time
-    setTimeout(() => {
+    try {
+      const response = await fetch('https://fosterpipeline.azurewebsites.net/pipeline', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query: question }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      setConversation(prev => [...prev, { type: 'answer', content: data.response }]);
+    } catch (error) {
+      console.error('Error:', error);
+      setConversation(prev => [...prev, { type: 'answer', content: 'Sorry, there was an error processing your request.' }]);
+    } finally {
       setIsThinking(false);
-      setConversation(prev => [...prev, { type: 'answer', content: 'This is a placeholder response. In a real application, this would be replaced with an actual answer from an API or other data source.' }]);
-    }, 2000); // Simulate 2 seconds of "thinking"
+    }
   };
 
   useEffect(() => {
