@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import { motion } from 'framer-motion';
 import Header from '../Header';
 import '../index.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Animation variants for fade-in effect
 const fadeIn = {

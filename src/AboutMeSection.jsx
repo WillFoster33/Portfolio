@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Add these imports at the top of your file
 import ls from './images/LS-Logo-Black.svg';

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Header from './Header';
 import { ArrowUp } from 'lucide-react';
 import headshot from './images/Headshot.png';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ThinkingAnimation = () => (
   <div className="flex justify-center items-center space-x-2 my-4">

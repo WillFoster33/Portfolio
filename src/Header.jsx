@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import resume from './images/Resume.png';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
