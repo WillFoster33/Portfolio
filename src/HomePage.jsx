@@ -84,7 +84,7 @@ const projects = [
 
 // Experience data
 const experiences = [
-  { title: 'Software Enginer Intern', company: 'Quanta', duration: 'May 2024 - Present', logo: quanta },
+  { title: 'Software Enginer Inteern', company: 'Quanta', duration: 'May 2024 - Present', logo: quanta },
   { title: 'Software Developer', company: 'Lean Snapshot', duration: 'July 2024 - September 2024', logo: ls },
   { title: 'Software Engineer for Training AI', company: 'Scale AI/Outlier AI', duration: 'April 2024 - July 2024', logo: scale },
   { title: 'Co-founder/Lead Developer', company: 'ArcaTwo', duration: 'May 2024 - November 2025', logo: arcatwo },
