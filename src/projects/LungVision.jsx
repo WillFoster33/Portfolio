@@ -109,7 +109,7 @@ const LungVision = () => {
           animate="visible"
         >
           <a 
-            href="https://github.com/yourusername/lungvision" 
+            href="https://github.com/WillFoster33/Lung-Recognition-Model" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-lg text-black relative group inline-block font-thin transform hover:scale-105 transition-transform duration-300"

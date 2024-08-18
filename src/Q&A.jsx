@@ -51,18 +51,19 @@ const QA = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
       setConversation(prev => [...prev, { type: 'answer', content: data.response }]);
     } catch (error) {
-      console.error('Error:', error);
-      setConversation(prev => [...prev, { type: 'answer', content: 'Sorry, there was an error processing your request.' }]);
+      console.error('Error details:', error);
+      setConversation(prev => [...prev, { type: 'answer', content: `Sorry, there was an error processing your request. Error details: ${error.message}` }]);
     } finally {
       setIsThinking(false);
     }
   };
+
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });

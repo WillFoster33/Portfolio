@@ -29,9 +29,9 @@ const Header = () => {
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="/" className="text-2xl font-thin">Will Foster</a>
         <div className="space-x-6">
-          {['Q&A', 'About', 'Skills', 'Projects', 'Experience', 'Contact', 'Resume'].map((item) => (
+          {['About', 'Skills', 'Projects', 'Experience', 'Contact', 'Resume'].map((item) => (
             <button 
-              key={item} 
+              key={item} // Add back Q&A
               onClick={() => handleNavigation(item.toLowerCase().replace('&', ''))}
               className="text-lg font-thin relative group"
             >

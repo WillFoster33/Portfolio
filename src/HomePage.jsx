@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Linkedin, Mail, Phone } from 'lucide-react';
 import Header from './Header';
+import MobileMessage from './MobileMessage';
 import './index.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -38,13 +39,16 @@ import arcatwo from './images/ArcaTwo-Logo.svg';
 
 // Timeline events data
 const timelineEvents = [
-  { year: 2003, title: "The Journey Begins!", description: "I was born on September 2, 2003, in Ann Arbor, MI.", image: a2 },
-  { year: 2020, title: "Gridiron Leader", description: "I was named captain of the high school varsity football team as a sophomore. That is my favorite sport to this day, Go Lions!", image: football },
-  { year: 2021, title: "Vision Quest", description: "I built a camera using Google AIY Vision Kit and trained it to recognize sign language in real-time. This project really propelled me to want to do CS in college.", image: aiy },
+  { year: 2003, title: "The Journey Begins", description: "I was born on September 2, 2003, in Ann Arbor, MI.", image: a2 },
+  { year: 2020, title: "Gridiron Leader", description: "I was named captain of the high school varsity football team as a sophomore. Football is my favorite sport to this day, Go Lions!", image: football },
+  { year: 2021, title: "Vision Quest", description: "I built a camera using Google AIY Vision Kit and trained it to recognize sign language in real-time. This project sparked my interest in computer science.", image: aiy },
   { year: 2022, title: "Badger Beginnings", description: "Embarked on my academic adventure at UW-Madison. I am double majoring in computer science and data science.", image: wisco },
   { year: 2023, title: "Hack-cess Story", description: "Stormed the MadData hackathon with team 'Badger Plus'. We came, we coded, we conquered! (Our team was the middle four)", image: hackathon },
-  { year: 2024, title: "Double Internship Domination", description: "Software Developer for Lean Snapshot and Software Engineer Intern at Quanta." },
-  { year: 2025, title: "Future: Loading...", description: "Gearing up for my next big leap!", image: qmark },
+  { 
+    year: 2024, 
+    title: "Dual Internships", 
+    description: "Secured positions as a Software Developer for Lean Snapshot and Software Engineer Intern at Quanta. Gained valuable industry experience in different roles."
+  },  { year: 2025, title: "Future: Loading...", description: "Preparing for the next phase of my career in software development and data science.", image: qmark },
 ];
 
 // Skills data
@@ -183,6 +187,22 @@ const ProjectLogo = ({ project }) => {
 
 // Main HomePage component
 export default function HomePage() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // Adjust this breakpoint as needed
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  if (isMobile) {
+    return <MobileMessage />;
+  }
   const copyToClipboard = (text, message) => {
     navigator.clipboard.writeText(text).then(() => {
       toast.success(message, {
@@ -230,31 +250,8 @@ export default function HomePage() {
           >
             Computer Science and Data Science Major at the University of Wisconsin-Madison
           </motion.p>
-          <motion.div 
-            variants={fadeIn} 
-            className="relative mt-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-          >
-            <Link 
-              to="/qa" 
-              className="text-2xl text-black relative group inline-block font-thin transform hover:scale-105 transition-transform duration-300"
-            >
-              Get to know me by visiting my Q&A!
-              <motion.span 
-                className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-400"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: [0, 1, 0] }}
-                transition={{
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  duration: 5,
-                  ease: "easeInOut"
-                }}
-              />
-            </Link>
-          </motion.div>
+
+          
         </motion.section>
 
         {/* About Me section */}
