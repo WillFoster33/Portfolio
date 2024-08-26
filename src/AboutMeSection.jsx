@@ -3,17 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Add these imports at the top of your file
 import ls from './images/LS-Logo-Black.svg';
 import quanta from './images/Quanta-Logo.png';
 
 const SectionTitle = ({ children }) => (
-  <h2 className="text-5xl font-thin mb-12 relative inline-block p-4">
+  <h2 className="text-5xl font-thin mb-12 relative inline-block p-4 dark:text-white">
     {children}
-    <span className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 animate-border-top"></span>
-    <span className="absolute top-0 right-0 w-0.5 h-full bg-gradient-to-b from-purple-400 to-blue-400 animate-border-right"></span>
-    <span className="absolute bottom-0 right-0 w-full h-0.5 bg-gradient-to-l from-blue-400 to-purple-400 animate-border-bottom"></span>
-    <span className="absolute bottom-0 left-0 w-0.5 h-full bg-gradient-to-t from-purple-400 to-blue-400 animate-border-left"></span>
+    <span className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 dark:from-blue-600 dark:to-purple-600 animate-border-top"></span>
+    <span className="absolute top-0 right-0 w-0.5 h-full bg-gradient-to-b from-purple-400 to-blue-400 dark:from-purple-600 dark:to-blue-600 animate-border-right"></span>
+    <span className="absolute bottom-0 right-0 w-full h-0.5 bg-gradient-to-l from-blue-400 to-purple-400 dark:from-blue-600 dark:to-purple-600 animate-border-bottom"></span>
+    <span className="absolute bottom-0 left-0 w-0.5 h-full bg-gradient-to-t from-purple-400 to-blue-400 dark:from-purple-600 dark:to-blue-600 animate-border-left"></span>
   </h2>
 );
 
@@ -63,9 +62,9 @@ const AboutMeSection = ({ timelineEvents, fadeIn }) => {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <div className="timeline-content">
-                  <div className="timeline-year">{event.year}</div>
-                  <div className="timeline-title">{event.title}</div>
+                <div className="timeline-content dark:bg-gray-800 dark:text-white">
+                  <div className="timeline-year dark:text-blue-400">{event.year}</div>
+                  <div className="timeline-title dark:text-gray-300">{event.title}</div>
                 </div>
               </motion.div>
             ))}
@@ -115,12 +114,12 @@ const AboutMeSection = ({ timelineEvents, fadeIn }) => {
           <div className="relative w-full">
             <button 
               onClick={() => handleNavigation(-1)} 
-              className={`absolute left-0 top-1/2 transform -translate-y-1/2 p-2 text-gray-600 transition-all duration-300 z-10 ${currentEventIndex === 0 ? 'opacity-30 pointer-events-none' : 'hover:text-gray-900'}`}
+              className={`absolute left-0 top-1/2 transform -translate-y-1/2 p-2 text-gray-600 dark:text-gray-400 transition-all duration-300 z-10 ${currentEventIndex === 0 ? 'opacity-30 pointer-events-none' : 'hover:text-gray-900 dark:hover:text-gray-200'}`}
               disabled={currentEventIndex === 0}
             >
               <ChevronLeft size={24} />
             </button>
-            <div className="snippet-container bg-white bg-opacity-70 p-8 rounded-lg shadow-lg min-h-[200px] overflow-hidden">
+            <div className="snippet-container bg-white dark:bg-gray-800 bg-opacity-70 dark:bg-opacity-70 p-8 rounded-lg shadow-lg min-h-[200px] overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`text-${currentEventIndex}`}
@@ -133,14 +132,14 @@ const AboutMeSection = ({ timelineEvents, fadeIn }) => {
                   }}
                   className="text-center absolute w-full left-0 right-0 px-8"
                 >
-                  <h3 className="text-2xl font-bold mb-4">{timelineEvents[currentEventIndex].title}</h3>
-                  <p className="text-gray-700 text-lg">{timelineEvents[currentEventIndex].description}</p>
+                  <h3 className="text-2xl font-bold mb-4 dark:text-white">{timelineEvents[currentEventIndex].title}</h3>
+                  <p className="text-gray-700 dark:text-gray-300 text-lg">{timelineEvents[currentEventIndex].description}</p>
                 </motion.div>
               </AnimatePresence>
             </div>
             <button 
               onClick={() => handleNavigation(1)} 
-              className={`absolute right-0 top-1/2 transform -translate-y-1/2 p-2 text-gray-600 transition-all duration-300 z-10 ${currentEventIndex === timelineEvents.length - 1 ? 'opacity-30 pointer-events-none' : 'hover:text-gray-900'}`}
+              className={`absolute right-0 top-1/2 transform -translate-y-1/2 p-2 text-gray-600 dark:text-gray-400 transition-all duration-300 z-10 ${currentEventIndex === timelineEvents.length - 1 ? 'opacity-30 pointer-events-none' : 'hover:text-gray-900 dark:hover:text-gray-200'}`}
               disabled={currentEventIndex === timelineEvents.length - 1}
             >
               <ChevronRight size={24} />

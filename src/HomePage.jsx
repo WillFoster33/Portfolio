@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Linkedin, Mail, Phone } from 'lucide-react';
@@ -152,6 +152,7 @@ const ProjectLogo = ({ project }) => {
   return (
     <motion.div 
       className="project-logo-container"
+      data-project={project.name.toLowerCase().replace(/\s+/g, '')}
       variants={fadeIn}
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
@@ -184,11 +185,11 @@ const ProjectLogo = ({ project }) => {
   );
 };
 
-
 // Main HomePage component
 export default function HomePage() {
   const [isMobile, setIsMobile] = useState(false);
-
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768); // Adjust this breakpoint as needed
@@ -199,6 +200,17 @@ export default function HomePage() {
 
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+  useEffect(() => {
+    if (isDarkTheme) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkTheme]);
+
+  const toggleTheme = () => {
+    setIsDarkTheme(prevTheme => !prevTheme);
+  };
 
   if (isMobile) {
     return <MobileMessage />;
@@ -217,8 +229,10 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-200 via-white to-purple-200 text-black">
-      <Header />
+<div className={`min-h-screen ${isDarkTheme ? 'dark' : ''} bg-gradient-to-br from-blue-200 via-white to-purple-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-black dark:text-white transition-colors duration-300`}>
+
+<Header isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
+
       <ToastContainer />
       <main className="pt-16">
         {/* Hero section */}
@@ -284,8 +298,8 @@ export default function HomePage() {
                   className="relative group"
                   variants={fadeIn}
                 >
-                  <div className="w-full h-32 bg-white bg-opacity-50 rounded-lg shadow-sm group-hover:shadow-lg transition-all duration-300 flex items-center justify-center overflow-hidden">
-                    <div className={`flex items-center justify-center ${skill.isNew ? 'w-29 h-28' : 'w-20 h-20'}`}>
+<div className="w-full h-32 bg-white bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-50 rounded-lg shadow-sm group-hover:shadow-lg transition-all duration-300 flex items-center justify-center overflow-hidden">
+<div className={`flex items-center justify-center ${skill.isNew ? 'w-29 h-28' : 'w-20 h-20'}`}>
                       <img 
                         src={skill.logo} 
                         alt={skill.name} 
@@ -345,10 +359,10 @@ export default function HomePage() {
             >
               {experiences.map((exp, index) => (
                 <motion.div 
-                  key={index} 
-                  className="bg-white bg-opacity-50 p-6 rounded-lg hover:shadow-md transition-all duration-300 border border-gray-200 hover:scale-105 flex justify-between items-center"
-                  variants={fadeIn}
-                >
+                key={index} 
+                className="bg-white bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-50 p-6 rounded-lg hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:scale-105 flex justify-between items-center"
+                variants={fadeIn}
+              >
                   <div className="text-left flex-grow pr-4">
                     <h3 className="text-xl font-semibold">{exp.title}</h3>
                     <p className="text-gray-600">{exp.company}</p>
@@ -392,11 +406,12 @@ export default function HomePage() {
           >
             <div className="flex items-center mb-4 cursor-pointer" onClick={() => copyToClipboard("foster.will.j@gmail.com", "Email copied!")}>
               <Mail className="mr-2" />
-              <span className="hover:underline">foster.will.j@gmail.com</span>
-            </div>
+              <span className="hover:underline dark:text-white">foster.will.j@gmail.com</span>
+
+</div>
             <div className="flex items-center mb-4 cursor-pointer" onClick={() => copyToClipboard("+17348827361", "Phone number copied!")}>
               <Phone className="mr-2" />
-              <span className="hover:underline">+1 (734) 882-7361</span>
+              <span className="hover:underline dark:text-white">+1 (734) 882-7361</span>
             </div>
             <div className="flex items-center cursor-pointer">
               <Linkedin className="mr-2" />
@@ -404,7 +419,7 @@ export default function HomePage() {
                 href="https://www.linkedin.com/in/will--foster" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:underline"
+                className="hover:underline dark:text-white"
               >
                 linkedin.com/in/will--foster
               </a>
@@ -415,8 +430,8 @@ export default function HomePage() {
       </main>
 
       {/* Footer */}
-<footer className="bg-gray-800 text-white py-8">
-  <div className="container mx-auto px-4 flex flex-col justify-center items-center">
+      <footer className="bg-gray-800 dark:bg-gray-900 text-white py-8">
+      <div className="container mx-auto px-4 flex flex-col justify-center items-center">
     <p className="text-center">&copy; 2024 Will Foster. All rights reserved.</p>
   </div>
 </footer>

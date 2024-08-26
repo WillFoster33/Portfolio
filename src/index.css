@@ -1,7 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@layer base {
+  .dark {
+    color-scheme: dark;
+  }
+}
 @keyframes underlineAnimation {
   0% { left: -10%; width: 10%; }
   25% { left: -10%; width: 120%; }
@@ -295,16 +299,24 @@
 }
 
 .back {
-  background-color: #f0f0f0; /* Light grey background for contrast */
+  background-color: #f0f0f0;
   transform: rotateY(180deg);
   padding: 20px;
   text-align: center;
 }
 
-.project-logo-container img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+/* Ensure text color remains constant regardless of theme */
+.back h3,
+.back p,
+.back a {
+  color: inherit;
+}
+
+/* Specific rule for Badger Plus card */
+.project-logo-container[data-project="badgerplus"] .back h3,
+.project-logo-container[data-project="badgerplus"] .back p,
+.project-logo-container[data-project="badgerplus"] .back a {
+  color: black !important;
 }
 
 /* More button styles */
@@ -319,7 +331,6 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background-color: currentColor;
   transition: width 0.3s ease;
   transform: translateX(-50%);
 }
@@ -328,6 +339,47 @@
   width: 100%;
 }
 
+/* Specific underline colors */
+.project-logo-container[data-project="fazah"] .back a span,
+.project-logo-container[data-project="lungvision"] .back a span {
+  background-color: white;
+}
+
+.project-logo-container[data-project="badgerplus"] .back a span {
+  background-color: black;
+}
+
+/* Dark mode styles for project cards */
+.dark .back {
+  background-color: #374151;
+}
+
+/* Ensure text color remains white in dark mode for Fazah and LungVision */
+.dark .project-logo-container[data-project="fazah"] .back h3,
+.dark .project-logo-container[data-project="fazah"] .back p,
+.dark .project-logo-container[data-project="fazah"] .back a,
+.dark .project-logo-container[data-project="lungvision"] .back h3,
+.dark .project-logo-container[data-project="lungvision"] .back p,
+.dark .project-logo-container[data-project="lungvision"] .back a {
+  color: white !important;
+}
+
+/* Badger Plus stays black even in dark mode */
+.dark .project-logo-container[data-project="badgerplus"] .back h3,
+.dark .project-logo-container[data-project="badgerplus"] .back p,
+.dark .project-logo-container[data-project="badgerplus"] .back a {
+  color: black !important;
+}
+
+/* Ensure underline color stays consistent in dark mode */
+.dark .project-logo-container[data-project="fazah"] .back a span,
+.dark .project-logo-container[data-project="lungvision"] .back a span {
+  background-color: white;
+}
+
+.dark .project-logo-container[data-project="badgerplus"] .back a span {
+  background-color: black;
+}
 /* Ensure responsiveness */
 @media (max-width: 768px) {
   .project-logo-container {
@@ -335,3 +387,68 @@
     height: 200px;
   }
 }
+
+
+/* Update the timeline styles */
+.dark .timeline::before {
+  background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+}
+
+.dark .timeline-event::before {
+  background: #1f2937;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+}
+
+.dark .timeline-event.active::before {
+  background: #3b82f6;
+}
+
+.dark .timeline-content {
+  background: rgba(31, 41, 55, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dark .timeline-year {
+  color: #60a5fa;
+}
+
+.dark .timeline-title {
+  color: #9ca3af;
+}
+
+/* Update snippet container */
+.dark .snippet-container {
+  background: rgba(31, 41, 55, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Section title border animations for dark mode */
+.dark .animate-border-top,
+.dark .animate-border-right,
+.dark .animate-border-bottom,
+.dark .animate-border-left {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+}
+
+.dark .fade-in-section {
+  color: #e5e7eb;
+}
+.dark .front, .dark .back {
+  background-color: #374151;
+  color: #e5e7eb;
+}
+
+.dark .back a {
+  color: #60a5fa;
+}
+
+.dark .back a span {
+  background-color: #60a5fa;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+

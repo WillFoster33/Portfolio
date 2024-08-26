@@ -1,4 +1,5 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useContext } from 'react';
+import { ThemeContext } from '../ThemeContext';
 import { motion } from 'framer-motion';
 import Header from '../Header';
 import '../index.css';
@@ -26,11 +27,13 @@ const SectionTitle = ({ children }) => (
 );
 
 const LungVision = () => {
+  const { isDarkTheme } = useContext(ThemeContext);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-200 via-white to-purple-200 text-black">
+    <div className={`min-h-screen ${isDarkTheme ? 'dark' : ''} bg-gradient-to-br from-blue-200 via-white to-purple-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 text-black dark:text-white transition-colors duration-300`}>
       <Header />
       <main className="pt-24 pb-16 px-4">
         <div className="container mx-auto max-w-4xl">
@@ -112,8 +115,8 @@ const LungVision = () => {
             href="https://github.com/WillFoster33/Lung-Recognition-Model" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="text-lg text-black relative group inline-block font-thin transform hover:scale-105 transition-transform duration-300"
-          >
+            className="text-3xl text-black dark:text-white relative group inline-block font-thin transform hover:scale-105 transition-transform duration-300"
+            >
             View on GitHub
             <span className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </a>
