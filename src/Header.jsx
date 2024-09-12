@@ -15,6 +15,9 @@ const Header = () => {
     if (section === 'resume') {
       const resumeUrl = 'https://fosterportfolioresume.blob.core.windows.net/resume/Will Foster Resume 2024.pdf';
       window.open(resumeUrl, '_blank');
+    } else if (section === 'testimony') {
+      const referralURL = 'https://fosterportfolioresume.blob.core.windows.net/letterofrecomendation/Will Foster Referral.pdf';
+      window.open(referralURL, '_blank');
     } else if (section === 'qa') {
       navigate('/qa');
     } else if (location.pathname !== '/') {
@@ -38,7 +41,7 @@ const Header = () => {
           />
         </a>
         <div className="space-x-6">
-          {['About', 'Skills', 'Projects', 'Experience', 'Contact', 'Resume'].map((item) => (
+          {['About', 'Skills', 'Projects', 'Experience', 'Contact', 'Testimony', 'Resume'].map((item) => (
             <button 
               key={item}
               onClick={() => handleNavigation(item.toLowerCase().replace('&', ''))}
