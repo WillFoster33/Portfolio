@@ -40,8 +40,8 @@ const Header = () => {
             className="h-12 w-auto" // Adjust the size as needed
           />
         </a>
-        <div className="space-x-6">
-          {['About', 'Skills', 'Projects', 'Experience', 'Contact', 'Testimony', 'Resume'].map((item) => (
+        <div className="space-x-5">
+          {['Q&A', 'About', 'Skills', 'Projects', 'Experience', 'Contact', 'Testimony', 'Resume'].map((item) => (
             <button 
               key={item}
               onClick={() => handleNavigation(item.toLowerCase().replace('&', ''))}
