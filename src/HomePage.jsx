@@ -253,18 +253,29 @@ export default function HomePage() {
             style={{ imageRendering: 'high-quality' }}
           />
           <motion.h1 
-            className="text-7xl font-thin tracking-normal mb-4 text-center"
+            className="text-7xl font-thin tracking-normal mb-2 text-center"
             variants={fadeIn}
           >
             Will Foster
           </motion.h1>
           <motion.p 
-            className="text-xl text-center font-light mb-12"
+            className="text-lg text-center font-light mb-16"
             variants={fadeIn}
           >
             Computer Science and Data Science Major at the University of Wisconsin-Madison
           </motion.p>
-
+          <motion.div
+    variants={fadeIn}
+    className="relative group mt-2"
+  >
+    <Link 
+      to="/qa"
+      className="text-3xl font-light relative group dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300"
+    >
+      Visit my Q&A to get to know me!
+      <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 group-hover:w-full"></span>
+    </Link>
+  </motion.div>
           
         </motion.section>
 
