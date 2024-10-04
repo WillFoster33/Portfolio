@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import 'react-toastify/dist/ReactToastify.css';
-
-import ls from './images/LS-Logo-Black.svg';
+import arcatwo from './images/ArcaTwo-Logo.svg';
 import quanta from './images/Quanta-Logo.png';
 
 const SectionTitle = ({ children }) => (
@@ -97,8 +96,8 @@ const AboutMeSection = ({ timelineEvents, fadeIn }) => {
                 {currentEventIndex === 5 && ( // Assuming the double internship is at index 5
                   <div className="absolute inset-0 flex justify-center items-center">
                     <img 
-                      src={ls} 
-                      alt="Lean Snapshot Logo" 
+                      src={arcatwo} 
+                      alt="ArcaTwo Logo" 
                       className="w-1/2 h-1/2 object-contain mr-4"
                     />
                     <img 

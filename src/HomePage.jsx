@@ -32,10 +32,11 @@ import wisco from './images/wisconsin.png';
 import qmark from './images/question.png';
 import aiy from './images/aiykit.jpg';
 import scale from './images/Scale_AI.svg'
-import ls from './images/LS-Logo-Black.svg';
 import quanta from './images/Quanta-Logo.png';
 import bp from './images/bplogo.png';
 import arcatwo from './images/ArcaTwo-Logo.svg';
+import bba from './images/bba.webp';
+import aago from './images/aago.png';
 
 // Timeline events data
 const timelineEvents = [
@@ -47,7 +48,7 @@ const timelineEvents = [
   { 
     year: 2024, 
     title: "Dual Internships", 
-    description: "Secured positions as a Software Developer for Lean Snapshot and Software Engineer Intern at Quanta. Gained valuable industry experience in different roles."
+    description: "Secured positions as a Software Developer for ArcaTwo and Software Engineer Intern at Quanta. Gained valuable industry experience in different roles."
   },  { year: 2025, title: "Future: Loading...", description: "Preparing for the next phase of my career in software development and data science.", image: qmark },
 ];
 
@@ -89,9 +90,10 @@ const projects = [
 // Experience data
 const experiences = [
   { title: 'Software Engineer Intern', company: 'Quanta', duration: 'May 2024 - Present', logo: quanta },
-  { title: 'Software Developer', company: 'Lean Snapshot', duration: 'July 2024 - September 2024', logo: ls },
+  { title: 'Software Developer', company: 'ArcaTwo', duration: 'July 2024 - September 2024', logo: arcatwo },
   { title: 'Software Engineer for Training AI', company: 'Scale AI/Outlier AI', duration: 'April 2024 - July 2024', logo: scale },
-  { title: 'Co-founder/Lead Developer', company: 'ArcaTwo', duration: 'May 2024 - November 2025', logo: arcatwo },
+  { title: 'Chauffeur', company: 'Big Bear Adventures', duration: 'June 2023 - August 2023', logo: bba },
+  { title: 'Customer Service Attendant', company: 'Ann Arbor Golf and Outing', duration: 'June 2022 - August 2022', logo: aago },
 ];
 
 // Animation variants for fade-in effect
